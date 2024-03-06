@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "537957037100",
+    "project_id": "vegaproject-43a36",
+    "storage_bucket": "vegaproject-43a36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:537957037100:android:e891454e54b7bf8929cd89",
+        "android_client_info": {
+          "package_name": "com.example.dartdash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB82Y1S9hKyNNRB6oNFsRhqQHtPw8cCItw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
