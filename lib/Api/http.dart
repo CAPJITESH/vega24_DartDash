@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-class HttpTemp extends StatefulWidget {
-  const HttpTemp({super.key});
+class HttpApi {
+  //Main Url
+  static const mainUrl = 'http://10.0.40.38:5000';
 
-  @override
-  State<HttpTemp> createState() => _HttpTempState();
-}
+  //Api Header
+  static const headers = {
+    'Content-type': 'application/json',
+  };
 
-class _HttpTempState extends State<HttpTemp> {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("HttpTemp"),
-    );
-  }
+
+  //Noti Api
+  static const notiApi = '$mainUrl/noti';
 }
