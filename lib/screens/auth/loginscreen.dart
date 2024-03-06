@@ -1,11 +1,16 @@
 import 'package:dartdash/constants/constants.dart';
+import 'package:dartdash/screens/Bottom%20Nav/bottom_nav_new.dart';
 import 'package:dartdash/screens/auth/signupscreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class LoginScreen extends StatelessWidget
 {
+  final auth = FirebaseAuth.instance;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,6 +38,7 @@ class LoginScreen extends StatelessWidget
                 ),
                 width: size.width*0.8,
                 child: TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     labelText: "Email Address",
                     prefixIcon: Icon(Icons.email),
@@ -52,6 +58,7 @@ class LoginScreen extends StatelessWidget
                 ),
                 width: size.width*0.8,
                 child: TextField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     labelText: "Password",
                     suffixIcon: Icon(Icons.remove_red_eye),
@@ -70,15 +77,22 @@ class LoginScreen extends StatelessWidget
                 height: size.height*0.07,
               ),
 
-              Container(
-                alignment: Alignment.center,
-                width: size.width*0.83,
-                height: size.height*0.07,
-                decoration: BoxDecoration(
-                  color: green,
-                  borderRadius: BorderRadius.circular(size.width*0.03),
+              InkWell(
+                onTap: ()async{
+                  auth.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).then((value){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const BottomNav(currentIndex: 0),),);
+                  });
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  width: size.width*0.83,
+                  height: size.height*0.07,
+                  decoration: BoxDecoration(
+                    color: green,
+                    borderRadius: BorderRadius.circular(size.width*0.03),
+                  ),
+                  child: Text("Log in",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: size.width*0.05),),
                 ),
-                child: Text("Log in",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: size.width*0.05),),
               ),
 
               SizedBox(

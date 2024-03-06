@@ -1,10 +1,19 @@
+import 'package:dartdash/model/usermodel.dart';
 import 'package:dartdash/screens/auth/personaldetails.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
 
 class SignUpScreen extends StatelessWidget
 {
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -38,6 +47,7 @@ class SignUpScreen extends StatelessWidget
                 ),
                 width: size.width*0.8,
                 child: TextField(
+                  controller: firstNameController,
                   decoration: InputDecoration(
                     labelText: "First Name",
                     prefixIcon: Icon(Icons.person),
@@ -57,6 +67,7 @@ class SignUpScreen extends StatelessWidget
                 ),
                 width: size.width*0.8,
                 child: TextField(
+                  controller: lastNameController,
                   decoration: InputDecoration(
                     labelText: "Last Name",
                     prefixIcon: Icon(Icons.person),
@@ -76,6 +87,7 @@ class SignUpScreen extends StatelessWidget
                 ),
                 width: size.width*0.8,
                 child: TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     labelText: "Email Address",
                     prefixIcon: Icon(Icons.email),
@@ -95,6 +107,7 @@ class SignUpScreen extends StatelessWidget
                 ),
                 width: size.width*0.8,
                 child: TextField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     labelText: "Password",
                     suffixIcon: Icon(Icons.remove_red_eye),
@@ -115,6 +128,7 @@ class SignUpScreen extends StatelessWidget
                 ),
                 width: size.width*0.8,
                 child: TextField(
+                  controller: confirmPasswordController,
                   decoration: InputDecoration(
                     labelText: "Confirm Password",
                     suffixIcon: Icon(Icons.remove_red_eye),
@@ -128,9 +142,15 @@ class SignUpScreen extends StatelessWidget
                 height: size.height*0.01,
               ),
               InkWell(
-                onTap: (){
-                  Navigator.pop(context);
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> PersonalDetails(),),);
+                onTap: ()async{
+                  if(passwordController.text == confirmPasswordController.text)
+                    {
+                      final cred = await auth.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+                      await cred.user!.updateDisplayName(firstNameController.text);
+                      final user = UserModel(email: emailController.text,firstName: firstNameController.text,lastName: lastNameController.text);
+                      Navigator.pop(context);
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> PersonalDetails(user: user,),),);
+                    }
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -151,7 +171,7 @@ class SignUpScreen extends StatelessWidget
                 alignment: Alignment.center,
                 child: SizedBox(
                   width: size.width*0.6,
-                  child: Row(
+                  child: const Row(
                     children: [
                       Expanded(child: Divider()),
                       Text("    Or Continue with    ",style: TextStyle(color: Colors.grey),),

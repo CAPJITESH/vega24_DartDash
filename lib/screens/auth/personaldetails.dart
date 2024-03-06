@@ -1,9 +1,18 @@
+import 'package:dartdash/model/usermodel.dart';
+import 'package:dartdash/screens/Bottom%20Nav/bottom_nav_new.dart';
+import 'package:dartdash/services/firestoreservice.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
 
 class PersonalDetails extends StatelessWidget
 {
+  UserModel user;
+  PersonalDetails({required this.user});
+
+  final heightController = TextEditingController();
+  final weightController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -30,6 +39,7 @@ class PersonalDetails extends StatelessWidget
                 ),
                 width: size.width*0.8,
                 child: TextField(
+                  controller: heightController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     hintText: "Enter Height",
@@ -51,6 +61,7 @@ class PersonalDetails extends StatelessWidget
                 ),
                 width: size.width*0.8,
                 child: TextField(
+                  controller: weightController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     hintText: "Enter Weight",
@@ -64,9 +75,12 @@ class PersonalDetails extends StatelessWidget
                 height: size.height*0.5,
               ),
               InkWell(
-                onTap: (){
+                onTap: ()async {
+                  user.height = int.parse(heightController.text);
+                  user.weight = int.parse(weightController.text);
+                  await FireStoreServices.addUser(user);
                   Navigator.pop(context);
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> PersonalDetails(),),);
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> BottomNav(currentIndex: 0),),);
                 },
                 child: Container(
                   alignment: Alignment.center,
