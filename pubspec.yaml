@@ -38,10 +38,10 @@ dependencies:
   firebase_core: ^2.26.0
   firebase_messaging: ^14.7.18
   flutter_local_notifications: ^16.3.3
-  http: ^0.13.4
+  http: 1.2.0
   flutter_keyboard_visibility: ^6.0.0
   toastification: ^1.2.1
-  flutter_svg: ^2.0.10+1
+  flutter_svg: 2.0.9
   flutter_screenutil: ^5.9.0
 
 
