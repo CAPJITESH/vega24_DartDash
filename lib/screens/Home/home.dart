@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 15,),
               InkWell(
+                splashFactory: NoSplash.splashFactory,
                 onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchPage()));
                 },

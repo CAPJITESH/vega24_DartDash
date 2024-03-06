@@ -5,6 +5,7 @@ import 'package:dartdash/services/notiservices.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'constants/constants.dart';
 
 
@@ -28,14 +29,22 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: cyanDarkest),
-        useMaterial3: true,
-      ),
-      home:  const BottomNav(currentIndex: 0,),
+    return ScreenUtilInit(
+      useInheritedMediaQuery: true,
+      designSize: Size(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: cyanDarkest),
+            useMaterial3: true,
+          ),
+          home: const BottomNav(currentIndex: 0,),
+        );
+      }
     );
   }
 }
