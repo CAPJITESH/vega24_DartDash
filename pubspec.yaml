@@ -41,7 +41,6 @@ dependencies:
   http: 1.2.0
   flutter_keyboard_visibility: ^6.0.0
   toastification: ^1.2.1
-  flutter_svg: 2.0.9
   flutter_screenutil: ^5.9.0
 
 

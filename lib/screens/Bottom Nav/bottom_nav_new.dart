@@ -58,7 +58,7 @@ class _BottomNavState extends State<BottomNav> {
           splashColor: Colors.transparent,
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
-          onPressed: () async {
+          onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const BookAppointment()));
           },
           child: Center(
