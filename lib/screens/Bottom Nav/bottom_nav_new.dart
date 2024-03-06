@@ -43,7 +43,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: 40),
+        padding: const EdgeInsets.only(bottom: 40),
         child: FloatingActionButton(
           isExtended: true,
           elevation: 0,
