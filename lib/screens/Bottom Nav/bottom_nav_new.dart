@@ -2,11 +2,10 @@ import 'package:dartdash/constants/constants.dart';
 import 'package:dartdash/screens/community/community.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../Home/home.dart';
 import '../Profile/profile.dart';
-import '../coding_mock/codingMock.dart';
-import '../company_info/company_info.dart';
+import '../Records/records.dart';
+import '../book_appointment/book_appointment.dart';
 
 class BottomNav extends StatefulWidget {
   final int currentIndex;
@@ -21,7 +20,7 @@ class _BottomNavState extends State<BottomNav> {
 
   List<Widget> pages = [
     const HomePage(),
-    const CompanyInfoPage(),
+    const RecordsPage(),
     const CommunityPage(),
     const ProfilePage(),
   ];
@@ -60,13 +59,13 @@ class _BottomNavState extends State<BottomNav> {
           focusColor: Colors.transparent,
           hoverColor: Colors.transparent,
           onPressed: () async {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const Prep()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const BookAppointment()));
           },
           child: Center(
             child: Image.asset(
-              "assets/bottom_nav_icons/Home.png",
-              width: 25,
-              height: 25,
+              "assets/bottom_nav_icons/plus.png",
+              width: 32,
+              height: 32,
               color: Colors.white,
             ),
           ),
@@ -115,61 +114,71 @@ class _BottomNavState extends State<BottomNav> {
                   BottomNavigationBarItem(
                     activeIcon: Image.asset(
                       'assets/bottom_nav_icons/Home.png',
-                      width: 24,
-                      height: 24,
+                      width: 28,
+                      height: 28,
                       color: green,
                     ),
                     icon: Image.asset(
                       'assets/bottom_nav_icons/Home.png',
-                      width: 24,
-                      height: 24,
+                      width: 28,
+                      height: 28,
                       color: Colors.grey,
                     ),
                     label: 'Home',
                   ),
                   BottomNavigationBarItem(
                     activeIcon: Image.asset(
-                      'assets/bottom_nav_icons/Home.png',
-                      width: 26,
-                      height: 26,
+                      'assets/bottom_nav_icons/records.png',
+                      width: 32,
+                      height: 32,
                       color: green,
                     ),
                     icon: Image.asset(
-                      'assets/bottom_nav_icons/Home.png',
-                      width: 26,
-                      height: 26,
+                      'assets/bottom_nav_icons/records.png',
+                      width: 32,
+                      height: 32,
                       color: Colors.grey,
                     ),
-                    label: 'Company Info',
+                    label: 'Records',
                   ),
                   BottomNavigationBarItem(
                     activeIcon: Image.asset(
-                      'assets/bottom_nav_icons/Home.png',
-                      width: 24,
-                      height: 24,
+                      'assets/bottom_nav_icons/community.png',
+                      width: 32,
+                      height: 32,
                       color: green,
                     ),
                     icon: Image.asset(
-                      'assets/bottom_nav_icons/Home.png',
-                      width: 24,
-                      height: 24,
+                      'assets/bottom_nav_icons/community.png',
+                      width: 32,
+                      height: 32,
                       color: Colors.grey,
                     ),
                     label: 'Community',
                   ),
                   BottomNavigationBarItem(
-                    activeIcon: Image.asset(
-                      'assets/bottom_nav_icons/Home.png',
-                      width: 24,
-                      height: 24,
+                    activeIcon: Icon(
+                      Icons.person,
                       color: green,
+                      size: 28,
                     ),
-                    icon: Image.asset(
-                      'assets/bottom_nav_icons/Home.png',
-                      width: 24,
-                      height: 24,
+                    icon: const Icon(
+                      Icons.person,
                       color: Colors.grey,
+                      size: 28,
                     ),
+                    // activeIcon: Image.asset(
+                    //   'assets/bottom_nav_icons/profile.png',
+                    //   width: 22,
+                    //   height: 22,
+                    //   color: green,
+                    // ),
+                    // icon: Image.asset(
+                    //   'assets/bottom_nav_icons/profile.png',
+                    //   width: 22,
+                    //   height: 22,
+                    //   color: Colors.grey,
+                    // ),
                     label: 'My Profile',
                   ),
                 ],
