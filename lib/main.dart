@@ -1,6 +1,19 @@
+import 'package:dartdash/services/notiservices.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await NotiServices.localNotificationInit();
+  FirebaseMessaging.instance.getToken().then((value){
+
+  });
+  await FirebaseMessaging.instance.setAutoInitEnabled(true);
+  FirebaseMessaging.onMessage.listen((event) {
+    NotiServices.showNotification(event);
+  });
   runApp(const MyApp());
 }
 
@@ -70,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
